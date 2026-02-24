@@ -69,7 +69,7 @@ function game(&$key, $Tab) {
             echo "Voici le nombre de clés que vous avez : " .$key . ".\n";
             if ($key == 3) {
                 
-            echo "Nous allons nous arrêter ici, tenez un trousseau.";
+            echo "Nous allons nous arrêter ici, tenez un trousseau.\n";
             }
         }
 

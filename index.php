@@ -66,6 +66,11 @@ function game(&$key, $Tab) {
             echo "Vous êtes encore en vie !\n";
             var_dump($Tab);
             $key += 1;
+            echo "Voici le nombre de clés que vous avez : " .$key . ".\n";
+            if ($key == 3) {
+                
+            echo "Nous allons nous arrêter ici, tenez un trousseau.";
+            }
         }
 
     } else {
@@ -74,7 +79,7 @@ function game(&$key, $Tab) {
 }
 
 //Boucle sur les clés
-while ($key >= 0 && $key <= 3) {              
+while ($key >= 0 && $key <= 2) {              
     game($key, $Tab);   
 }  
 

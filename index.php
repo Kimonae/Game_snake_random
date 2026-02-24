@@ -1,52 +1,57 @@
-<?php
-//Niveau 1
-//Le jeu est composé de 5 jarres : 4 contiennent une clé, une contient un serpent.
-//Le joueur doit choisir une jarre, s’il tombe sur une clé c’est gagné, s’il tombe sur le serpent c’est perdu
+<?php 
+$snake = 1; 
+$ancienTab = []; 
+$key = 0;  
 
-//Math random ayant été signalé par mes collègues, je vais éviter de l'utiliser.
+do {      
+    $Tab = [];      
 
+    $positionSerpent = (date("s") + $snake) % 5;      
 
-$snake = 1;
-$ancienTab = [];
+    for ($i = 0; $i < 5; $i++) {          
+        if ($i == $positionSerpent) {             
+            $Tab[] = 1; // serpent         
+        } else {             
+            $Tab[] = 0; // clé         
+        }     
+    }  
 
-do {
+} while ($Tab == $ancienTab);  
 
-    $Tab = [];
-
-    // Triche sur l'aléatoire
-    $positionSerpent = (date("s") + $snake) % 5;
-
-    // Construction du tableau
-    for ($i = 0; $i < 5; $i++) {
-
-        if ($i == $positionSerpent) {
-            $Tab[] = 1; // serpent
-        } else {
-            $Tab[] = 0; // clé
-        }
-    }
-
-} while ($Tab == $ancienTab);
-
-$ancienTab = $Tab;
+$ancienTab = $Tab;  
 
 
+// fonction et arguments
+function game(&$key, $Tab) {  
 
-echo "Choisissez une jarre (0 à 4) : ";
-$choix = (int) readline();
+    echo "Choisissez une jarre (0 à 4) : "; 
+    $choix = (int) readline();  
 
-if ($choix >= 0 && $choix <= 4) {
+    if ($choix >= 0 && $choix <= 4) {         
 
-    if ($Tab[$choix] == 1) {
-        echo "Serpent screamer mouhahahaha.\n";
-            var_dump($Tab);
-    } else {
-        echo "Vous êtes encore en vie !.\n";
-        var_dump($Tab);
-    }
+        if ($Tab[$choix] == 1) {         
+            echo "Serpent screamer mouhahahaha.\n";             
+            var_dump($Tab);             
+            $key = " ";      
+        } else {         
+            echo "Vous êtes encore en vie !.\n";         
+            var_dump($Tab);         
+            $key += 1;     
+            echo "Voici le nombre de clés que vous avez : " .$key . ".\n";
+            if ($key == 3) {
+                
+                echo "Nous allons nous arrêter ici, tenez un trousseau.";
+            }
+        }  
 
-} else {
-    echo "Choix invalide.\n";
-}
+    } else {     
+        echo "Choix invalide.\n"; 
+    }  
+}    
+
+//Boucle sur les clés
+while ($key >= 0 && $key <= 3) {              
+    game($key, $Tab);   
+}  
 
 ?>

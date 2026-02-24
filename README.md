@@ -1,2 +1,3 @@
 # Game_snake_random
-Just a game random.
+
+A little game based on "random" numbers
